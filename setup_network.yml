@@ -1,0 +1,39 @@
+---
+
+- name: Setup Raspberry Network
+  hosts: all
+  remote_user: pi
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Apt update
+      apt:
+        update_cache: yes
+
+    - name: Install DHCP server
+      apt:
+        pkg: isc-dhcp-server  
+
+    - name: Copying network configuration files
+      copy:
+        src: config_files/dhcpd.conf
+        dest: /etc/dhcp/dhcpd.conf
+    - copy:
+        src: config_files/interfaces
+        dest: /etc/network/interfaces
+    - copy:
+        src: config_files/isc-dhcp-server
+        dest: /etc/default/isc-dhcp-server
+
+    - name: Turning ethernet interface up
+      shell: "ifup eth0"
+
+    - name: Setup DHCP daemons
+      systemd:
+        name: dhcpcd.service
+        state: stopped
+        enabled: False
+    - systemd:
+        name: isc-dhcp-server.service
+        state: restarted
+        enabled: True

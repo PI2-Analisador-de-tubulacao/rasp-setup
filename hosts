@@ -1,0 +1,2 @@
+[rasps]
+192.168.200.1 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
