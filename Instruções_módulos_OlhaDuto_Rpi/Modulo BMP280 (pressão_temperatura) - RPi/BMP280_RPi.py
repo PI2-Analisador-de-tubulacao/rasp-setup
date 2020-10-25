@@ -1,4 +1,4 @@
-# Código em Python para interface entre o sensor BMP280 e a Raspberry Pi
+# Código em Python para interface entre o sensor BMP280 e a Raspberry Pi 
 
 #Referência: https://github.com/ControlEverythingCommunity/BMP280/commit/ff98c9596a73f80384cf4008119903de83e3a40f
 
