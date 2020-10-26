@@ -1,6 +1,7 @@
 ## Adaptar o script para uso no --->> ROS 2.0
 # Analisar como foi realizada esta implementação: https://gitlab.com/boldhearts/ros2_v4l2_camera
 # https://index.ros.org/r/v4l2_camera/
+# https://github.com/fkromer/awesome-ros2
 # Outro exemplo que pode auxiliar: https://github.com/klintan/ros2_usb_camera/blob/dashing-devel/include/usb_camera_driver.hpp
 
 # Conexão da cÂmera USB no RPI 3B+ com o ROS
