@@ -1,6 +1,10 @@
-## Adaptar o script
-# Referência: https://sudonull.com/post/14791-How-to-use-a-USB-camera-with-ROS-on-the-Raspberry-Pi-or-BeagleBone-Blue-for-streaming-video-to-a-lar
+## Adaptar o script para uso no --->> ROS 2.0
+# Analisar como foi realizada esta implementação: https://gitlab.com/boldhearts/ros2_v4l2_camera
+# https://index.ros.org/r/v4l2_camera/
+# Outro exemplo que pode auxiliar: https://github.com/klintan/ros2_usb_camera/blob/dashing-devel/include/usb_camera_driver.hpp
+
 # Conexão da cÂmera USB no RPI 3B+ com o ROS
+# Referência: https://sudonull.com/post/14791-How-to-use-a-USB-camera-with-ROS-on-the-Raspberry-Pi-or-BeagleBone-Blue-for-streaming-video-to-a-lar
 # Ethernet --- net_dev pode ser enpXXs0 ou ethX
 $ ifconfig {net_dev} 
 ifconfig enp61s0 
@@ -26,7 +30,7 @@ $ export ROS_MASTER_URI="http://10.42.0.1:11311" или
 $ echo'export ROS_IP="10.42.0.65"' >> ~/.bashrc 
 $ echo'export ROS_MASTER_URI="http://10.42.0.1:11311"' >> ~/.bashrc
 
-##### O sistema reconhece a camera em qualquer usb do "escravo" automaticamente???????
+##### O sistema reconhece a camera em qualquer usb do dispositivo "escravo" automaticamente???????
 # Conectar uma câmera USB e verifique se a câmera é reconhecida pelo sistema
 $ lsusb 
 $ ls /dev | grep video* 
