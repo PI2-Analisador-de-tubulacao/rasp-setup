@@ -1,0 +1,10 @@
+#!/bin/sh
+
+sudo docker run \
+  --init \
+  --rm \
+  --net=host \
+  -it \
+  -v "$PWD/video.mp4:/app/video.mp4" \
+  -v "$PWD/mock_output:/app/mock_output" \
+  icaropires/pi2-raspi-ros-mock "$@"

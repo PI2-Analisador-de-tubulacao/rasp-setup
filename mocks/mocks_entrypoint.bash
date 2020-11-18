@@ -9,13 +9,16 @@ mkdir -p ${OUTPUT_DIR}
 
 echo 'Starting collecting...'
 for t in $TOPICS; do
+    echo "Running collector for topic $t..."
     PYTHONUNBUFFERED=yes ros2 topic echo --csv $t &> ${OUTPUT_DIR}/log${t//\//_}.csv \
     || echo "Failed. Does topic $t exists?" \
     &
 done
-echo 'Started! CTRL-C to stop'
+
+source ros_ws/install/setup.sh
+ros2 run camera_simulator camera_simulator --type video --path /app/video.mp4 &
 
 wait
 
 jobs -p | xargs kill -9 &> /dev/null
-echo 'Finished collecting'
+echo 'Finished mocking'

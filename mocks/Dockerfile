@@ -10,6 +10,6 @@ RUN apt update -y \
     && rosdep install -i --from-path src --rosdistro foxy -y \
     && colcon build --symlink-install
 
-CMD . /opt/ros/foxy/setup.sh \
-    && . ros_ws/install/local_setup.sh \
-    && ros2 run camera_simulator camera_simulator --type video --path /app/video.mp4
+COPY mocks_entrypoint.bash /app/mocks_entrypoint.bash
+
+CMD ["/bin/bash", "/app/mocks_entrypoint.bash"]

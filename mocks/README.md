@@ -5,14 +5,12 @@ The image is also already available in DockerHub: [icaropires/pi2-raspi-ros-mock
 
 ### Running
 
-Following, there is an example of how the container with the mocks can be executed. This command assumes that
-the video you want to use as mock is named `my_video.mp4` and is located in your current directory:
+Following, there is an example of how the container with the mocks can be executed. The video to be used to mock the camera must be named `video.mp4`
+and be at the same folder as the `run_mocks` script. Then, run:
 
 ```bash
-$ sudo docker run --rm --net=host -v "$PWD/my_video.mp4:/app/video.mp4" icaropires/pi2-raspi-ros-mock
+$ chmod +x run_mocks  # Only in the first time
+$ ./run_mocks
 ```
 
-With the command execution, the frames of the video will start to be published as messages of type `sensor_msgs/msg/Image` to
-the topic `/image/camera_info`.
-
-_Note: Currently the container contains only the mock for the camera_
+with this, all mocks will be in execution.
