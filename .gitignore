@@ -5,12 +5,10 @@ mock/
 mocks/ros2_ws/**/install
 mocks/ros2_ws/**/log
 mocks/ros2_ws/**/build
-mocks/ros2_ws/**/resource
 
 ros2_ws/**/install
 ros2_ws/**/log
 ros2_ws/**/build
-ros2_ws/**/resource
 
 # Environments
 .env

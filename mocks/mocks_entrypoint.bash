@@ -15,7 +15,8 @@ for t in $TOPICS; do
     &
 done
 
-source ros_ws/install/setup.sh
+source ros2_ws/install/setup.sh
+ros2 run mock_publishers mock &
 ros2 run camera_simulator camera_simulator --type video --path /app/video.mp4 &
 
 wait
