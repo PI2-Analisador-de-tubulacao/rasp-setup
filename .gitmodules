@@ -1,3 +1,6 @@
 [submodule "ros2_ws/src/ros2_usb_camera"]
 	path = ros2_ws/src/ros2_usb_camera
 	url = https://github.com/klintan/ros2_usb_camera
+[submodule "mocks/ros2_ws/src/ros2_video_streamer"]
+	path = mocks/ros2_ws/src/ros2_video_streamer
+	url = https://github.com/icaropires/ros2_video_streamer
