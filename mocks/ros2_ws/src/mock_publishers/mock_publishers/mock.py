@@ -18,16 +18,16 @@ class MockPublisher(Node):
         #   make it in increments
         self._to_publish = [
             (self.create_publisher(Pose2D, '/coordinates', 10),
-                Pose2D(x=float(randint(-100, 100)), y=float(randint(-100, 100)), theta=random()*2*pi)),
+                lambda: Pose2D(x=float(randint(-100, 100)), y=float(randint(-100, 100)), theta=random()*2*pi)),
 
             (self.create_publisher(FluidPressure, '/environment/pressure', 10),
-                FluidPressure(fluid_pressure=float(randint(30000, 70000)))),
+                lambda: FluidPressure(fluid_pressure=float(randint(30000, 70000)))),
 
             (self.create_publisher(Temperature, '/environment/temperature', 10),
-                Temperature(temperature=float(randint(0, 60)))),
+                lambda: Temperature(temperature=float(randint(0, 60)))),
 
             (self.create_publisher(Float32, '/leds', 10),
-                Float32(data=random())),
+                lambda: Float32(data=random())),
         ]
 
         timer_period = 2
@@ -38,7 +38,8 @@ class MockPublisher(Node):
         return [p.topic_name for p, _ in self._to_publish]
 
     def timer_callback(self):
-        for publisher, msg in self._to_publish:
+        for publisher, fn_msg in self._to_publish:
+            msg = fn_msg()
             publisher.publish(msg)
 
 

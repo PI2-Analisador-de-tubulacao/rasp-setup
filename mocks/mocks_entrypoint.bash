@@ -4,14 +4,12 @@
 
 OUTPUT_DIR="mock_output"
 
-# Topics and types to publish
-# [/environment/pressure]=sensor_msgs/msg/FluidPressure
-# [/environment/temperature]=sensor_msgs/msg/Temperature
-# [/image/image_raw]=sensor_msgs/msg/Image
-# [/coordinates]=geometry_msgs/msg/Pose2D
-# [/leds]=std_msgs/msg/Float32
-
-declare -A SUBSCRIBE_TOPICS=(
+declare -A TOPICS_DICT=(
+  [/environment/pressure]=sensor_msgs/msg/FluidPressure
+  [/environment/temperature]=sensor_msgs/msg/Temperature
+  # [/image/image_raw]=sensor_msgs/msg/Image
+  [/coordinates]=geometry_msgs/msg/Pose2D
+  [/leds]=std_msgs/msg/Float32
   [/commands/leds]=std_msgs/msg/Float32
   [/commands/camera/rotation]=geometry_msgs/msg/Vector3
   [/commands/camera/height]=std_msgs/msg/Int8
@@ -21,11 +19,11 @@ declare -A SUBSCRIBE_TOPICS=(
 
 mkdir -p ${OUTPUT_DIR}
 
-TOPICS="${!SUBSCRIBE_TOPICS[@]}"
-echo "Collecting from: $TOPICS"
+TOPICS="${!TOPICS_DICT[@]}"
+echo "Collecting to \"$OUTPUT_DIR\" outputs from: $TOPICS"
 
 for topic_ in $TOPICS; do
-    type_=${SUBSCRIBE_TOPICS[$topic_]}
+    type_=${TOPICS_DICT[$topic_]}
     PYTHONUNBUFFERED=yes ros2 topic echo --csv $topic_ $type_ &> ${OUTPUT_DIR}/log${topic_//\//_}.csv &
 done
 
